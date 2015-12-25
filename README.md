@@ -5,13 +5,16 @@ This project provides solutions to the [Advent of Code 2015](http://adventofcode
 You can run the solutions via [SBT](http://www.scala-sbt.org/).
 
 First, compile the solutions:
+
 	$ sbt compile
 
 Then, you can  run the solution to a specific  problem. For instance, to
 run the solution for the part 1 of day 1:
+
 	$ sbt "runMain aoc.day01.Part1" < src/main/resources/day01/input
 	
 To run the solution for the part 2 of day 1:
+
 	$ sbt "runMain aoc.day01.Part2" < src/main/resources/day01/input
 
 # Notes about the Provided Solutions #
