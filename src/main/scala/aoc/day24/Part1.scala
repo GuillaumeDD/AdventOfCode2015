@@ -75,7 +75,8 @@ What is the quantum entanglement of the first group of packages in the ideal con
       s"Cannot split evenly the package weights given the number of groups $nbGroup")
     val amountPerPackage = l.sum / nbGroup
 
-    // Helper function
+    // Helper function that checks whether a list can be split in nbPart
+    // groups which sum equals amountPerPackage
     def canBeSplit(lRest: List[Package], nbPart: Int): Boolean = {
       if (nbPart == 1) {
         // A unique package is correct if its sum is equal to the expected amount per package
@@ -104,21 +105,28 @@ What is the quantum entanglement of the first group of packages in the ideal con
     val n = l.size
     var i = 1
     var found = false
-    var resultGroup = List[Group]()
+    var solution: Package = -1
     while (i < n && !found) {
       println(s"\t -> trying with a first part of size $i")
-      resultGroup =
-        (for {
-          comb <- l.combinations(i)
-          if comb.sum == amountPerPackage
-          rest = l.diff(comb)
-          if canBeSplit(rest, nbGroup - 1)
-        } yield (Group(comb))).toList
-      found = resultGroup.size > 0
+      val comb = l.combinations(i)
+        .toList // Iterator to list
+        .filter(_.sum == amountPerPackage) // Only keep combinations that sum up rightly
+        .sortBy { _.product } // Order combinations by increasing quantum entanglement
+      var k = 0
+
+      // Check combinations in ascending quantum entanglement
+      // Stop as soon as a correct solution is found
+      while (k < comb.size && !found) {
+        val rest = l.diff(comb(k))
+        if (canBeSplit(rest, nbGroup - 1)) {
+          solution = comb(k).product
+          found = true
+        }
+      }
       i += 1
     }
 
-    resultGroup.map(_.quantumEntanglement()).min
+    solution
   }
 
   // Input

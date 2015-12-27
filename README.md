@@ -49,10 +49,11 @@ To run the solution for the part 2 of day 1:
 1. Day 22: Wizard Simulator 20XX
 1. Day 23: Opening the Turing Lock
 1. Day 24: It Hangs in the Balance
-   + This solution proceeds by building a first group by ascending size and
-     by checking that the other groups can be built so that all groups have
-     the same weight.
-   + This runs slowly, in particular for part 2.
+   + This solution proceeds by building a first group by ascending
+     size and by ascending quantum entanglement. Then it checks that
+     the other groups can be built so that all groups have the same
+     weight.
+   + It takes a few seconds to compute the solution
 1. Day 25: Let It Snow 
 
 # License #
